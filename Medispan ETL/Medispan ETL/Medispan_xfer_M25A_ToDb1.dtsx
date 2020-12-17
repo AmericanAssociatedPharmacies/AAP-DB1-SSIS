@@ -1,0 +1,1665 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/17/2017 10:15:19 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AAP-N202"
+  DTS:CreatorName="AAP\sedwards"
+  DTS:DTSID="{D6F45EF3-0AE6-4820-B944-784292940D49}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Medispan_xfer_M25A_ToDb1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{A2BE9C30-3CFE-4905-866B-8DFDB55CBD29}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AAPDW1.Medispan]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F718AE74-1A11-4137-8681-2269047D2783}"
+      DTS:ObjectName="AAPDW1.Medispan">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=AAPDW1;Initial Catalog=Medispan;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DB1.Medispan]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9AA410E9-7E8B-40F3-AFA7-E2DF84F9899A}"
+      DTS:ObjectName="DB1.Medispan">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DB1;Initial Catalog=Medispan;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\xfer M25A table from DW1 to DB1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{34B7AE31-610B-4522-A558-9AA762828642}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="xfer M25A table from DW1 to DB1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\xfer M25A table from DW1 to DB1\DB1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DB1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Staging].[M25_A]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\xfer M25A table from DW1 to DB1\DB1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DB1.Medispan]"
+                  connectionManagerRefId="Package.ConnectionManagers[DB1.Medispan]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[NDC_UPC_HRI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="NDC_UPC_HRI"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[NDC_UPC_HRI]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[NDC_UPC_HRI]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[ID_Number_Format_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="ID_Number_Format_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[ID_Number_Format_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[ID_Number_Format_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Record_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Record_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Record_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Record_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Record_Code_ID]"
+                      cachedDataType="numeric"
+                      cachedName="Record_Code_ID"
+                      cachedPrecision="37"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Record_Code_ID]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Record_Code_ID]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Transaction_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Transaction_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Transaction_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Transaction_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Sequence_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="Sequence_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Sequence_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Sequence_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Labeler_Code]"
+                      cachedDataType="numeric"
+                      cachedName="Labeler_Code"
+                      cachedPrecision="37"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Labeler_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Labeler_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Generic_ID_Type_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Generic_ID_Type_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Generic_ID_Type_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Generic_ID_Type_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Generic_ID_Number]"
+                      cachedDataType="numeric"
+                      cachedName="Generic_ID_Number"
+                      cachedPrecision="37"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Generic_ID_Number]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Generic_ID_Number]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[DEA_Class_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="DEA_Class_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DEA_Class_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DEA_Class_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      cachedDataType="numeric"
+                      cachedName="AHFSCC_Therapeutic_Class_Code"
+                      cachedPrecision="37"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AHFSCC_Therapeutic_Class_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AHFSCC_Therapeutic_Class_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Item_Status_Flag]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Item_Status_Flag"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Item_Status_Flag]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Item_Status_Flag]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Local_Systemic_Flag]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Local_Systemic_Flag"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Local_Systemic_Flag]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Local_Systemic_Flag]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[TEE_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="TEE_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[TEE_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[TEE_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Formatted_ID_Number]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="13"
+                      cachedName="Formatted_ID_Number"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Formatted_ID_Number]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Formatted_ID_Number]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[RX_OTC_Indicator_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="RX_OTC_Indicator_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RX_OTC_Indicator_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RX_OTC_Indicator_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Third_Party_Restriction_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Third_Party_Restriction_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Third_Party_Restriction_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Third_Party_Restriction_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Maintenance_Drug_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Maintenance_Drug_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Maintenance_Drug_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Maintenance_Drug_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Dispensing_Unit_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Dispensing_Unit_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Dispensing_Unit_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Dispensing_Unit_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Unit_Dose_Unit_of_Use_Package"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Unit_Dose_Unit_of_Use_Package]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Unit_Dose_Unit_of_Use_Package]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Route_of_Administration]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="Route_of_Administration"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Route_of_Administration]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Route_of_Administration]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Form_Type_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Form_Type_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Form_Type_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Form_Type_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Dollar_Rank_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Dollar_Rank_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Dollar_Rank_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Dollar_Rank_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Rx_Rank_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Rx_Rank_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Rx_Rank_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Rx_Rank_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Number_System_Character]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Number_System_Character"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Number_System_Character]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Number_System_Character]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Secondary_ID_Format_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Secondary_ID_Format_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Secondary_ID_Format_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Secondary_ID_Format_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Secondary_ID_Number]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Secondary_ID_Number"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Secondary_ID_Number]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Secondary_ID_Number]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Multi_Source_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Multi_Source_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Multi_Source_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Multi_Source_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Brand_Name_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Brand_Name_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Brand_Name_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Brand_Name_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Reimbursement_Indicator]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Reimbursement_Indicator"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Reimbursement_Indicator]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Reimbursement_Indicator]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Internal_External_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Internal_External_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Internal_External_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Internal_External_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Single_Combination_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Single_Combination_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Single_Combination_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Single_Combination_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Storage_Condition_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Storage_Condition_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Storage_Condition_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Storage_Condition_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Limited_Stability_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Limited_Stability_Code"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Limited_Stability_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Limited_Stability_Code]" />
+                    <inputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Last_Change_Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="Last_Change_Date"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Last_Change_Date]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Last_Change_Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[NDC_UPC_HRI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="NDC_UPC_HRI" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[ID_Number_Format_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ID_Number_Format_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Record_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Record_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Record_Code_ID]"
+                      dataType="numeric"
+                      name="Record_Code_ID"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Transaction_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Transaction_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Sequence_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="Sequence_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Labeler_Code]"
+                      dataType="numeric"
+                      name="Labeler_Code"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Generic_ID_Type_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Generic_ID_Type_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Generic_ID_Number]"
+                      dataType="numeric"
+                      name="Generic_ID_Number"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DEA_Class_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="DEA_Class_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AHFSCC_Therapeutic_Class_Code]"
+                      dataType="numeric"
+                      name="AHFSCC_Therapeutic_Class_Code"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Item_Status_Flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Item_Status_Flag" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Local_Systemic_Flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Local_Systemic_Flag" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[TEE_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="TEE_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Formatted_ID_Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="13"
+                      name="Formatted_ID_Number" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RX_OTC_Indicator_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="RX_OTC_Indicator_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Third_Party_Restriction_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Third_Party_Restriction_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Maintenance_Drug_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Maintenance_Drug_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Dispensing_Unit_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Dispensing_Unit_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Unit_Dose_Unit_of_Use_Package]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Unit_Dose_Unit_of_Use_Package" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Route_of_Administration]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Route_of_Administration" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Form_Type_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Form_Type_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Dollar_Rank_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Dollar_Rank_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Rx_Rank_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Rx_Rank_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Number_System_Character]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Number_System_Character" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Secondary_ID_Format_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Secondary_ID_Format_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Secondary_ID_Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Secondary_ID_Number" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Multi_Source_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Multi_Source_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Brand_Name_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Brand_Name_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Reimbursement_Indicator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Reimbursement_Indicator" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Internal_External_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Internal_External_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Single_Combination_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Single_Combination_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Storage_Condition_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Storage_Condition_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Limited_Stability_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Limited_Stability_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Last_Change_Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Last_Change_Date" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\xfer M25A table from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\xfer M25A table from DW1 to DB1\DW1"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DW1"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[M25_A]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\xfer M25A table from DW1 to DB1\DW1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AAPDW1.Medispan]"
+                  connectionManagerRefId="Package.ConnectionManagers[AAPDW1.Medispan]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[NDC_UPC_HRI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[NDC_UPC_HRI]"
+                      length="11"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[NDC_UPC_HRI]"
+                      name="NDC_UPC_HRI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[ID_Number_Format_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[ID_Number_Format_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[ID_Number_Format_Code]"
+                      name="ID_Number_Format_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Record_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Record_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Record_Code]"
+                      name="Record_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Record_Code_ID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Record_Code_ID]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Record_Code_ID]"
+                      name="Record_Code_ID"
+                      precision="37"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Transaction_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Transaction_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Transaction_Code]"
+                      name="Transaction_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Sequence_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Sequence_Code]"
+                      length="7"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Sequence_Code]"
+                      name="Sequence_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Labeler_Code]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Labeler_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Labeler_Code]"
+                      name="Labeler_Code"
+                      precision="37"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Generic_ID_Type_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Generic_ID_Type_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Generic_ID_Type_Code]"
+                      name="Generic_ID_Type_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Generic_ID_Number]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Generic_ID_Number]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Generic_ID_Number]"
+                      name="Generic_ID_Number"
+                      precision="37"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DEA_Class_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DEA_Class_Code]"
+                      length="5"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DEA_Class_Code]"
+                      name="DEA_Class_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AHFSCC_Therapeutic_Class_Code]"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      name="AHFSCC_Therapeutic_Class_Code"
+                      precision="37"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Item_Status_Flag]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Item_Status_Flag]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Item_Status_Flag]"
+                      name="Item_Status_Flag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Local_Systemic_Flag]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Local_Systemic_Flag]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Local_Systemic_Flag]"
+                      name="Local_Systemic_Flag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[TEE_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[TEE_Code]"
+                      length="2"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[TEE_Code]"
+                      name="TEE_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Formatted_ID_Number]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Formatted_ID_Number]"
+                      length="13"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Formatted_ID_Number]"
+                      name="Formatted_ID_Number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RX_OTC_Indicator_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RX_OTC_Indicator_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RX_OTC_Indicator_Code]"
+                      name="RX_OTC_Indicator_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Third_Party_Restriction_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Third_Party_Restriction_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Third_Party_Restriction_Code]"
+                      name="Third_Party_Restriction_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Maintenance_Drug_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Maintenance_Drug_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Maintenance_Drug_Code]"
+                      name="Maintenance_Drug_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Dispensing_Unit_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Dispensing_Unit_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Dispensing_Unit_Code]"
+                      name="Dispensing_Unit_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Unit_Dose_Unit_of_Use_Package]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      name="Unit_Dose_Unit_of_Use_Package"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Route_of_Administration]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Route_of_Administration]"
+                      length="2"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Route_of_Administration]"
+                      name="Route_of_Administration"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Form_Type_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Form_Type_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Form_Type_Code]"
+                      name="Form_Type_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Dollar_Rank_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Dollar_Rank_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Dollar_Rank_Code]"
+                      name="Dollar_Rank_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Rx_Rank_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Rx_Rank_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Rx_Rank_Code]"
+                      name="Rx_Rank_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Number_System_Character]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Number_System_Character]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Number_System_Character]"
+                      name="Number_System_Character"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Secondary_ID_Format_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Secondary_ID_Format_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Secondary_ID_Format_Code]"
+                      name="Secondary_ID_Format_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Secondary_ID_Number]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Secondary_ID_Number]"
+                      length="10"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Secondary_ID_Number]"
+                      name="Secondary_ID_Number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Multi_Source_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Multi_Source_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Multi_Source_Code]"
+                      name="Multi_Source_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Brand_Name_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Brand_Name_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Brand_Name_Code]"
+                      name="Brand_Name_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Reimbursement_Indicator]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Reimbursement_Indicator]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Reimbursement_Indicator]"
+                      name="Reimbursement_Indicator"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Internal_External_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Internal_External_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Internal_External_Code]"
+                      name="Internal_External_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Single_Combination_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Single_Combination_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Single_Combination_Code]"
+                      name="Single_Combination_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Storage_Condition_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Storage_Condition_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Storage_Condition_Code]"
+                      name="Storage_Condition_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Limited_Stability_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Limited_Stability_Code]"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Limited_Stability_Code]"
+                      name="Limited_Stability_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Last_Change_Date]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Last_Change_Date]"
+                      length="5"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Last_Change_Date]"
+                      name="Last_Change_Date"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[NDC_UPC_HRI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="NDC_UPC_HRI" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[ID_Number_Format_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ID_Number_Format_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Record_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Record_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Record_Code_ID]"
+                      dataType="numeric"
+                      name="Record_Code_ID"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Transaction_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Transaction_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Sequence_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="Sequence_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Labeler_Code]"
+                      dataType="numeric"
+                      name="Labeler_Code"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Generic_ID_Type_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Generic_ID_Type_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Generic_ID_Number]"
+                      dataType="numeric"
+                      name="Generic_ID_Number"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DEA_Class_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="DEA_Class_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AHFSCC_Therapeutic_Class_Code]"
+                      dataType="numeric"
+                      name="AHFSCC_Therapeutic_Class_Code"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Item_Status_Flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Item_Status_Flag" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Local_Systemic_Flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Local_Systemic_Flag" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[TEE_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="TEE_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Formatted_ID_Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="13"
+                      name="Formatted_ID_Number" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RX_OTC_Indicator_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="RX_OTC_Indicator_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Third_Party_Restriction_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Third_Party_Restriction_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Maintenance_Drug_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Maintenance_Drug_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Dispensing_Unit_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Dispensing_Unit_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Unit_Dose_Unit_of_Use_Package]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Unit_Dose_Unit_of_Use_Package" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Route_of_Administration]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Route_of_Administration" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Form_Type_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Form_Type_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Dollar_Rank_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Dollar_Rank_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Rx_Rank_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Rx_Rank_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Number_System_Character]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Number_System_Character" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Secondary_ID_Format_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Secondary_ID_Format_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Secondary_ID_Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Secondary_ID_Number" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Multi_Source_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Multi_Source_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Brand_Name_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Brand_Name_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Reimbursement_Indicator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Reimbursement_Indicator" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Internal_External_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Internal_External_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Single_Combination_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Single_Combination_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Storage_Condition_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Storage_Condition_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Limited_Stability_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Limited_Stability_Code" />
+                    <externalMetadataColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Last_Change_Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Last_Change_Date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[NDC_UPC_HRI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[NDC_UPC_HRI]"
+                      name="NDC_UPC_HRI" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ID_Number_Format_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ID_Number_Format_Code]"
+                      name="ID_Number_Format_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Record_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Record_Code]"
+                      name="Record_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Record_Code_ID]"
+                      dataType="numeric"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Record_Code_ID]"
+                      name="Record_Code_ID"
+                      precision="37" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Transaction_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Transaction_Code]"
+                      name="Transaction_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Sequence_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Sequence_Code]"
+                      name="Sequence_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Labeler_Code]"
+                      dataType="numeric"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Labeler_Code]"
+                      name="Labeler_Code"
+                      precision="37" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Generic_ID_Type_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Generic_ID_Type_Code]"
+                      name="Generic_ID_Type_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Generic_ID_Number]"
+                      dataType="numeric"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Generic_ID_Number]"
+                      name="Generic_ID_Number"
+                      precision="37" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DEA_Class_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DEA_Class_Code]"
+                      name="DEA_Class_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      dataType="numeric"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      name="AHFSCC_Therapeutic_Class_Code"
+                      precision="37" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Item_Status_Flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Item_Status_Flag]"
+                      name="Item_Status_Flag" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Local_Systemic_Flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Local_Systemic_Flag]"
+                      name="Local_Systemic_Flag" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[TEE_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[TEE_Code]"
+                      name="TEE_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Formatted_ID_Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="13"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Formatted_ID_Number]"
+                      name="Formatted_ID_Number" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RX_OTC_Indicator_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RX_OTC_Indicator_Code]"
+                      name="RX_OTC_Indicator_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Third_Party_Restriction_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Third_Party_Restriction_Code]"
+                      name="Third_Party_Restriction_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Maintenance_Drug_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Maintenance_Drug_Code]"
+                      name="Maintenance_Drug_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Dispensing_Unit_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Dispensing_Unit_Code]"
+                      name="Dispensing_Unit_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      name="Unit_Dose_Unit_of_Use_Package" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Route_of_Administration]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Route_of_Administration]"
+                      name="Route_of_Administration" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Form_Type_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Form_Type_Code]"
+                      name="Form_Type_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Dollar_Rank_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Dollar_Rank_Code]"
+                      name="Dollar_Rank_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Rx_Rank_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Rx_Rank_Code]"
+                      name="Rx_Rank_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Number_System_Character]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Number_System_Character]"
+                      name="Number_System_Character" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Secondary_ID_Format_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Secondary_ID_Format_Code]"
+                      name="Secondary_ID_Format_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Secondary_ID_Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Secondary_ID_Number]"
+                      name="Secondary_ID_Number" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Multi_Source_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Multi_Source_Code]"
+                      name="Multi_Source_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Brand_Name_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Brand_Name_Code]"
+                      name="Brand_Name_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Reimbursement_Indicator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Reimbursement_Indicator]"
+                      name="Reimbursement_Indicator" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Internal_External_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Internal_External_Code]"
+                      name="Internal_External_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Single_Combination_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Single_Combination_Code]"
+                      name="Single_Combination_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Storage_Condition_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Storage_Condition_Code]"
+                      name="Storage_Condition_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Limited_Stability_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Limited_Stability_Code]"
+                      name="Limited_Stability_Code" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Last_Change_Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Last_Change_Date]"
+                      name="Last_Change_Date" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\xfer M25A table from DW1 to DB1.Paths[OLE DB Source Output]"
+              endId="Package\xfer M25A table from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\xfer M25A table from DW1 to DB1\DW1.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="240,42"
+          Id="Package\xfer M25A table from DW1 to DB1"
+          TopLeft="482,135" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\xfer M25A table from DW1 to DB1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="102,42"
+          Id="Package\xfer M25A table from DW1 to DB1\DW1"
+          TopLeft="418,110" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\xfer M25A table from DW1 to DB1\DB1"
+          TopLeft="490,235" />
+        <EdgeLayout
+          Id="Package\xfer M25A table from DW1 to DB1.Paths[OLE DB Source Output]"
+          TopLeft="469,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="70,83"
+              Start="0,0"
+              End="70,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.5"
+                    Point2="0,41.5"
+                    Point3="4,41.5" />
+                  <mssgle:LineSegment
+                    End="66,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="66,41.5"
+                    Point2="70,41.5"
+                    Point3="70,45.5" />
+                  <mssgle:LineSegment
+                    End="70,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\xfer M25A table from DW1 to DB1\DW1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\xfer M25A table from DW1 to DB1\DB1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
