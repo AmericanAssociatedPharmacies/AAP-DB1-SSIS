@@ -1,0 +1,19 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "CHPH_AAP Archive to DW1", "CHPH_AAP Archive to DW1\CHPH_AAP Archive to DW1.dtproj", "{1E6AEA9F-614F-46CA-BA8E-E7986FB8A6C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E6AEA9F-614F-46CA-BA8E-E7986FB8A6C3}.Development|Default.ActiveCfg = Development
+		{1E6AEA9F-614F-46CA-BA8E-E7986FB8A6C3}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
