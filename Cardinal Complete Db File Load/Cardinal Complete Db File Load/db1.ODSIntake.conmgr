@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="db1.ODSIntake"
+  DTS:DTSID="{AF30C554-5DAE-46C3-B879-914483B19E96}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=db1;Initial Catalog=ODSIntake;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
