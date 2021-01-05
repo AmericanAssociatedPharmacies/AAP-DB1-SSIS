@@ -1,0 +1,2167 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/7/2019 9:13:15 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AAP-N149"
+  DTS:CreatorName="AAP\sedwards"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{F6402868-2FFE-4FE2-B789-1C65AE0812E8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PharmacyMaster_PullFromDW1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{0C5541AC-63B0-4E6F-8095-0DE39AADC880}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AAPDW1.DynamicsODS]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{A847A78A-EF94-47F7-B2F9-E83076B353BB}"
+      DTS:ObjectName="AAPDW1.DynamicsODS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=AAPDW1;Initial Catalog=DynamicsODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AAPDW1.DynamicsODS 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7A874707-DC1D-4CDB-B4F8-279E76ECA2F0}"
+      DTS:ObjectName="AAPDW1.DynamicsODS 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=AAPDW1;Initial Catalog=DynamicsODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AAPDW1.PharmacyMaster]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{A2E0AEF1-6CEF-49B5-A4AF-1B5DAED7BE95}"
+      DTS:ObjectName="AAPDW1.PharmacyMaster">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=AAPDW1;Initial Catalog=PharmacyMaster;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DB1.PharmacyMaster]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{37D2FCFD-54DE-41FF-A7B8-BB6102B51B6F}"
+      DTS:ObjectName="DB1.PharmacyMaster">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DB1;Initial Catalog=PharmacyMaster;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DB1.PharmacyMaster 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8495C4A7-0751-48AD-9A2F-912920BFA2E6}"
+      DTS:ObjectName="DB1.PharmacyMaster 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DB1;Initial Catalog=PharmacyMaster;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{82165412-52bf-460a-93c0-e2cd098cd215}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DB1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Staging].[WarehouseProgram]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DB1.PharmacyMaster 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DB1.PharmacyMaster 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].Columns[PMID]"
+                      cachedDataType="i4"
+                      cachedName="PMID"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PMID]"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[PMID]" />
+                    <inputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].Columns[APIAccountNmbr]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="APIAccountNmbr"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[APIAccountNmbr]"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[APIAccountNmbr]" />
+                    <inputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].Columns[EffectiveDate]"
+                      cachedDataType="dbDate"
+                      cachedName="EffectiveDate"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDate]"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[EffectiveDate]" />
+                    <inputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].Columns[QuitDate]"
+                      cachedDataType="dbDate"
+                      cachedName="QuitDate"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[QuitDate]"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[QuitDate]" />
+                    <inputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].Columns[ProgramName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="ProgramName"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[ProgramName]"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[ProgramName]" />
+                    <inputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].Columns[StatusCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="StatusCode"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[StatusCode]"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[StatusCode]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RowID]"
+                      dataType="i4"
+                      name="RowID" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PMID]"
+                      dataType="i4"
+                      name="PMID" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[APIAccountNmbr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="APIAccountNmbr" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDate]"
+                      dataType="dbDate"
+                      name="EffectiveDate" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[QuitDate]"
+                      dataType="dbDate"
+                      name="QuitDate" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[ProgramName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ProgramName" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RowCreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="RowCreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RowUpdatedDate]"
+                      dataType="dbTimeStamp"
+                      name="RowUpdatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input].ExternalColumns[StatusCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="StatusCode" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DW1"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[vwWarehouseProgramDB1]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AAPDW1.DynamicsODS 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[AAPDW1.DynamicsODS 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[PMID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[PMID]"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[PMID]"
+                      name="PMID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[APIAccountNmbr]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[APIAccountNmbr]"
+                      length="20"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[APIAccountNmbr]"
+                      name="APIAccountNmbr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[EffectiveDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[EffectiveDate]"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[EffectiveDate]"
+                      name="EffectiveDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[QuitDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[QuitDate]"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[QuitDate]"
+                      name="QuitDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[ProgramName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[ProgramName]"
+                      length="25"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[ProgramName]"
+                      name="ProgramName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[StatusCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[StatusCode]"
+                      length="25"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].Columns[StatusCode]"
+                      name="StatusCode"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[PMID]"
+                      dataType="i4"
+                      name="PMID" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[APIAccountNmbr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="APIAccountNmbr" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[EffectiveDate]"
+                      dataType="dbDate"
+                      name="EffectiveDate" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[QuitDate]"
+                      dataType="dbDate"
+                      name="QuitDate" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[ProgramName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ProgramName" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output].ExternalColumns[StatusCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="StatusCode" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[PMID]"
+                      dataType="i4"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[PMID]"
+                      name="PMID" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[APIAccountNmbr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[APIAccountNmbr]"
+                      name="APIAccountNmbr" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[EffectiveDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[EffectiveDate]"
+                      name="EffectiveDate" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[QuitDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[QuitDate]"
+                      name="QuitDate" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[ProgramName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[ProgramName]"
+                      name="ProgramName" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[StatusCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[StatusCode]"
+                      name="StatusCode" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram.Paths[OLE DB Source Output]"
+              endId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Xfer PM_AddressMaster from DW1 to DB1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{09C9571C-51B4-4747-8FEE-006581896196}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Xfer PM_AddressMaster from DW1 to DB1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DB1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Staging].[PM_AddressMaster]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DB1.PharmacyMaster]"
+                  connectionManagerRefId="Package.ConnectionManagers[DB1.PharmacyMaster]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[PK_AddressMaster]"
+                      cachedDataType="i4"
+                      cachedName="PK_AddressMaster"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PK_AddressMaster]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PK_AddressMaster]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[PMID]"
+                      cachedDataType="i4"
+                      cachedName="PMID"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PMID]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PMID]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Address_Type_Id]"
+                      cachedDataType="i4"
+                      cachedName="Address_Type_Id"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Address_Type_Id]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Address_Type_Id]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Address]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Address"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Address]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Address2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Address2"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Address2]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Address2]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[County]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="County"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[County]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[County]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[State]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Zip]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Zip"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Zip]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Zip]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[ContactFullName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="ContactFullName"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[ContactFullName]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[ContactFullName]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Fax]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Fax"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Fax]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Fax]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Phone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Phone"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[AlternatePhone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="AlternatePhone"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AlternatePhone]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AlternatePhone]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Email"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Email]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Created]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Created"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Created]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Created]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Modified]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Modified"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Modified]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Modified]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[RowVersion]"
+                      cachedDataType="i4"
+                      cachedName="RowVersion"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RowVersion]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RowVersion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PK_AddressMaster]"
+                      dataType="i4"
+                      name="PK_AddressMaster" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PMID]"
+                      dataType="i4"
+                      name="PMID" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Address_Type_Id]"
+                      dataType="i4"
+                      name="Address_Type_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Address2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Address2" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[County]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[ContactFullName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ContactFullName" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Fax]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Fax" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AlternatePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="AlternatePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Created]"
+                      dataType="dbTimeStamp"
+                      name="Created" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Modified]"
+                      dataType="dbTimeStamp"
+                      name="Modified" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RowVersion]"
+                      dataType="i4"
+                      name="RowVersion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DW1"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PM_AddressMaster]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AAPDW1.PharmacyMaster]"
+                  connectionManagerRefId="Package.ConnectionManagers[AAPDW1.PharmacyMaster]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PMID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PMID]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PMID]"
+                      name="PMID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Address_Type_Id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Address_Type_Id]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Address_Type_Id]"
+                      name="Address_Type_Id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Address]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      length="100"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Address]"
+                      name="Address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Address2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Address2]"
+                      length="100"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Address2]"
+                      name="Address2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="50"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[County]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[County]"
+                      length="100"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[County]"
+                      name="County"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                      length="2"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Zip]"
+                      length="50"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Zip]"
+                      name="Zip"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[ContactFullName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[ContactFullName]"
+                      length="255"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[ContactFullName]"
+                      name="ContactFullName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Fax]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Fax]"
+                      length="50"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Fax]"
+                      name="Fax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      length="50"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AlternatePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AlternatePhone]"
+                      length="12"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AlternatePhone]"
+                      name="AlternatePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      length="150"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Modified]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Modified]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Modified]"
+                      name="Modified"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      name="RowVersion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PK_AddressMaster]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PK_AddressMaster]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PK_AddressMaster]"
+                      name="PK_AddressMaster"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Created]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Created]"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Created]"
+                      name="Created"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PMID]"
+                      dataType="i4"
+                      name="PMID" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Address_Type_Id]"
+                      dataType="i4"
+                      name="Address_Type_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Address2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Address2" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[County]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[ContactFullName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ContactFullName" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Fax]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Fax" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AlternatePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="AlternatePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Modified]"
+                      dataType="dbTimeStamp"
+                      name="Modified" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      dataType="i4"
+                      name="RowVersion" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PK_AddressMaster]"
+                      dataType="i4"
+                      name="PK_AddressMaster" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Created]"
+                      dataType="dbTimeStamp"
+                      name="Created" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PMID]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PMID]"
+                      name="PMID" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Address_Type_Id]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Address_Type_Id]"
+                      name="Address_Type_Id" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Address]"
+                      name="Address" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Address2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Address2]"
+                      name="Address2" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[County]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[County]"
+                      name="County" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[State]"
+                      name="State" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Zip]"
+                      name="Zip" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ContactFullName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ContactFullName]"
+                      name="ContactFullName" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Fax]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Fax]"
+                      name="Fax" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AlternatePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AlternatePhone]"
+                      name="AlternatePhone" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Modified]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Modified]"
+                      name="Modified" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      name="RowVersion" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PK_AddressMaster]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PK_AddressMaster]"
+                      name="PK_AddressMaster" />
+                    <outputColumn
+                      refId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Created]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Created]"
+                      name="Created" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Xfer PM_AddressMaster from DW1 to DB1.Paths[OLE DB Source Output]"
+              endId="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Xfer PM_VendorAccts from DW1 to DB1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{46ea477a-211a-4f6e-9e82-4bda385f0261}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Xfer PM_VendorAccts from DW1 to DB1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DB1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Staging].[PM_VendorAccts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DB1.PharmacyMaster]"
+                  connectionManagerRefId="Package.ConnectionManagers[DB1.PharmacyMaster]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[PMID]"
+                      cachedDataType="i4"
+                      cachedName="PMID"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PMID]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PMID]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[VendorID]"
+                      cachedDataType="i4"
+                      cachedName="VendorID"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[VendorID]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[VendorID]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[isPrimary]"
+                      cachedDataType="i4"
+                      cachedName="isPrimary"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[isPrimary]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[isPrimary]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[VendAcctNum]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="32"
+                      cachedName="VendAcctNum"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[VendAcctNum]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[VendAcctNum]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[PVA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="PVA"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PVA]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PVA]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[PaymentTerms]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PaymentTerms"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PaymentTerms]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PaymentTerms]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Source]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Source"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Source]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Source]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[PVAEffectiveDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="PVAEffectiveDate"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PVAEffectiveDate]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PVAEffectiveDate]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Created]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Created"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Created]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Created]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Modified]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Modified"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Modified]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Modified]" />
+                    <inputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[RowVersion]"
+                      cachedDataType="i4"
+                      cachedName="RowVersion"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RowVersion]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RowVersion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PMID]"
+                      dataType="i4"
+                      name="PMID" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[VendorID]"
+                      dataType="i4"
+                      name="VendorID" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[isPrimary]"
+                      dataType="i4"
+                      name="isPrimary" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[VendAcctNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="VendAcctNum" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PVA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="PVA" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PaymentTerms]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PaymentTerms" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Source" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PVAEffectiveDate]"
+                      dataType="dbTimeStamp"
+                      name="PVAEffectiveDate" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Created]"
+                      dataType="dbTimeStamp"
+                      name="Created" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Modified]"
+                      dataType="dbTimeStamp"
+                      name="Modified" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RowVersion]"
+                      dataType="i4"
+                      name="RowVersion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DW1"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PM_VendorAccts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AAPDW1.PharmacyMaster]"
+                  connectionManagerRefId="Package.ConnectionManagers[AAPDW1.PharmacyMaster]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PMID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PMID]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PMID]"
+                      name="PMID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[VendorID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[VendorID]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[VendorID]"
+                      name="VendorID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[isPrimary]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[isPrimary]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[isPrimary]"
+                      name="isPrimary"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[VendAcctNum]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[VendAcctNum]"
+                      length="32"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[VendAcctNum]"
+                      name="VendAcctNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PVA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PVA]"
+                      length="30"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PVA]"
+                      name="PVA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PaymentTerms]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PaymentTerms]"
+                      length="50"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PaymentTerms]"
+                      name="PaymentTerms"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Source]"
+                      length="3"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Source]"
+                      name="Source"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PVAEffectiveDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PVAEffectiveDate]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PVAEffectiveDate]"
+                      name="PVAEffectiveDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Created]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Created]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Created]"
+                      name="Created"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Modified]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Modified]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Modified]"
+                      name="Modified"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      name="RowVersion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PMID]"
+                      dataType="i4"
+                      name="PMID" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[VendorID]"
+                      dataType="i4"
+                      name="VendorID" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[isPrimary]"
+                      dataType="i4"
+                      name="isPrimary" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[VendAcctNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="VendAcctNum" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PVA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="PVA" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PaymentTerms]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PaymentTerms" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Source" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PVAEffectiveDate]"
+                      dataType="dbTimeStamp"
+                      name="PVAEffectiveDate" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Created]"
+                      dataType="dbTimeStamp"
+                      name="Created" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Modified]"
+                      dataType="dbTimeStamp"
+                      name="Modified" />
+                    <externalMetadataColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      dataType="i4"
+                      name="RowVersion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PMID]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PMID]"
+                      name="PMID" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[VendorID]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[VendorID]"
+                      name="VendorID" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[isPrimary]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[isPrimary]"
+                      name="isPrimary" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[VendAcctNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[VendAcctNum]"
+                      name="VendAcctNum" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PVA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PVA]"
+                      name="PVA" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PaymentTerms]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PaymentTerms]"
+                      name="PaymentTerms" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Source]"
+                      name="Source" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PVAEffectiveDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PVAEffectiveDate]"
+                      name="PVAEffectiveDate" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Created]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Created]"
+                      name="Created" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Modified]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Modified]"
+                      name="Modified" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      name="RowVersion" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Xfer PM_VendorAccts from DW1 to DB1.Paths[OLE DB Source Output]"
+              endId="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{57329804-A69D-4B44-BD4B-D752AA075074}"
+      DTS:From="Package\Xfer PM_VendorAccts from DW1 to DB1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6FED2EAE-16BC-40E0-86D1-023985A3AA65}"
+      DTS:From="Package\Xfer PM_AddressMaster from DW1 to DB1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Xfer PM_VendorAccts from DW1 to DB1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="277,42"
+          Id="Package\Xfer PM_AddressMaster from DW1 to DB1"
+          TopLeft="423,165" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Xfer PM_VendorAccts from DW1 to DB1"
+          TopLeft="427,267" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="560.75,207">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="501,42"
+          Id="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram"
+          TopLeft="310,365" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="560.25,309">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Xfer PM_AddressMaster from DW1 to DB1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="102,42"
+          Id="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1"
+          TopLeft="448,143" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1"
+          TopLeft="511,249" />
+        <EdgeLayout
+          Id="Package\Xfer PM_AddressMaster from DW1 to DB1.Paths[OLE DB Source Output]"
+          TopLeft="499,185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61,64"
+              Start="0,0"
+              End="61,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="4,32" />
+                  <mssgle:LineSegment
+                    End="57,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57,32"
+                    Point2="61,32"
+                    Point3="61,36" />
+                  <mssgle:LineSegment
+                    End="61,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Xfer PM_AddressMaster from DW1 to DB1\DB1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Xfer PM_AddressMaster from DW1 to DB1\DW1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Xfer PM_VendorAccts from DW1 to DB1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="102,42"
+          Id="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1"
+          TopLeft="379,95" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1"
+          TopLeft="454,195" />
+        <EdgeLayout
+          Id="Package\Xfer PM_VendorAccts from DW1 to DB1.Paths[OLE DB Source Output]"
+          TopLeft="430,137">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73,58"
+              Start="0,0"
+              End="73,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="4,29" />
+                  <mssgle:LineSegment
+                    End="69,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="69,29"
+                    Point2="73,29"
+                    Point3="73,33" />
+                  <mssgle:LineSegment
+                    End="73,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Xfer PM_VendorAccts from DW1 to DB1\DB1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Xfer PM_VendorAccts from DW1 to DB1\DW1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DB1"
+          TopLeft="397,274" />
+        <NodeLayout
+          Size="102,42"
+          Id="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram\DW1"
+          TopLeft="345,146" />
+        <EdgeLayout
+          Id="Package\Xfer from DyanmicsODS WarehouseProgram to DB1 PharmacyMaster WarehouseProgram.Paths[OLE DB Source Output]"
+          TopLeft="396,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50,86"
+              Start="0,0"
+              End="50,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39"
+                    Point2="0,43"
+                    Point3="4,43" />
+                  <mssgle:LineSegment
+                    End="46,43" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46,43"
+                    Point2="50,43"
+                    Point3="50,47" />
+                  <mssgle:LineSegment
+                    End="50,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

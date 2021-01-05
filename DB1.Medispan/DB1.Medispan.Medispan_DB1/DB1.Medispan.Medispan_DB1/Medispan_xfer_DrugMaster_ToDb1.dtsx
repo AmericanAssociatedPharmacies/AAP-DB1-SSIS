@@ -1,0 +1,1680 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/16/2017 3:51:52 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AAP-N202"
+  DTS:CreatorName="AAP\sedwards"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{2A11532A-ECBB-4BDA-AD13-9DBCDD43B2CC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Medispan_xfer_DrugMaster_ToDb1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{2F74C0A0-505C-4A0E-8A42-A350C8088EE6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AAPDW1.Medispan]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{D071CBC8-FC55-4DD6-A619-E19C5A0DAFA2}"
+      DTS:ObjectName="AAPDW1.Medispan">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=AAPDW1;Initial Catalog=Medispan;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DB1.Medispan]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{75075795-A196-413E-8760-438BE4484AF9}"
+      DTS:ObjectName="DB1.Medispan">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DB1;Initial Catalog=Medispan;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Move DrugMaster from DW1 to DB1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5FBF1E58-2EEB-4090-91E9-3FC6303C820C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move DrugMaster from DW1 to DB1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Move DrugMaster from DW1 to DB1\DB1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DB1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Staging].[DrugMaster]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move DrugMaster from DW1 to DB1\DB1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DB1.Medispan]"
+                  connectionManagerRefId="Package.ConnectionManagers[DB1.Medispan]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[NDC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="NDC"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[NDC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[NDC]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[GPI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="GPI"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[GPI]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[GPI]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[DrugName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="DrugName"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DrugName]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DrugName]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[MFG]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="MFG"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[MFG]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[MFG]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[DrugType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DrugType"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DrugType]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DrugType]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[DrugTypeShort]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="DrugTypeShort"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DrugTypeShort]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DrugTypeShort]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Unit]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="Unit"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Unit]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Unit]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Form]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="Form"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Form]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Form]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[PS]"
+                      cachedDataType="numeric"
+                      cachedName="PS"
+                      cachedPrecision="8"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PS]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PS]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[PD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PD"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PD]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PD]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[RxOTC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="RxOTC"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RxOTC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RxOTC]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Repack]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Repack"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Repack]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Repack]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[GPIDesc]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="GPIDesc"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[GPIDesc]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[GPIDesc]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Strength]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="Strength"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Strength]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Strength]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Strength_Unit_Measure]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="Strength_Unit_Measure"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Strength_Unit_Measure]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Strength_Unit_Measure]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[OBSDTEC]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OBSDTEC"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[OBSDTEC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[OBSDTEC]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[DEA]"
+                      cachedDataType="i4"
+                      cachedName="DEA"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DEA]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DEA]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[WACPkg]"
+                      cachedDataType="numeric"
+                      cachedName="WACPkg"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[WACPkg]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[WACPkg]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[WAC]"
+                      cachedDataType="numeric"
+                      cachedName="WAC"
+                      cachedPrecision="13"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[WAC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[WAC]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[WACEffDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="WACEffDate"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[WACEffDate]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[WACEffDate]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[AWPPkg]"
+                      cachedDataType="numeric"
+                      cachedName="AWPPkg"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AWPPkg]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AWPPkg]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[AWP]"
+                      cachedDataType="numeric"
+                      cachedName="AWP"
+                      cachedPrecision="13"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AWP]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AWP]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[BBDC]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="BBDC"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[BBDC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[BBDC]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[MSC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="MSC"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[MSC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[MSC]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[BNC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="BNC"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[BNC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[BNC]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[CSP]"
+                      cachedDataType="numeric"
+                      cachedName="CSP"
+                      cachedPrecision="37"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[CSP]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[CSP]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[DESI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="DESI"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DESI]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DESI]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[DEA_Class_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="DEA_Class_Code"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DEA_Class_Code]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DEA_Class_Code]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[RouteAdmin]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="RouteAdmin"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RouteAdmin]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RouteAdmin]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[RX_OTC_Indicator_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="RX_OTC_Indicator_Code"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RX_OTC_Indicator_Code]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RX_OTC_Indicator_Code]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Unit_Dose_Unit_of_Use_Package"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Unit_Dose_Unit_of_Use_Package]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Unit_Dose_Unit_of_Use_Package]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      cachedDataType="numeric"
+                      cachedName="AHFSCC_Therapeutic_Class_Code"
+                      cachedPrecision="37"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AHFSCC_Therapeutic_Class_Code]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AHFSCC_Therapeutic_Class_Code]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[GPPC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="GPPC"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[GPPC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[GPPC]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[PackageQuantity]"
+                      cachedDataType="numeric"
+                      cachedName="PackageQuantity"
+                      cachedPrecision="37"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PackageQuantity]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PackageQuantity]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[IDCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="IDCode"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[IDCODE]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[IDCode]" />
+                    <inputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].Columns[NDC_10]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="NDC_10"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[NDC_10]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[NDC_10]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[NDC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="NDC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[GPI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="GPI" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DrugName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="DrugName" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[MFG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="MFG" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DrugType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DrugType" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DrugTypeShort]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="DrugTypeShort" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Unit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Unit" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Form]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Form" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PS]"
+                      dataType="numeric"
+                      name="PS"
+                      precision="8"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PD" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RxOTC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="RxOTC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Repack]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Repack" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[GPIDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="GPIDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Strength]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Strength" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Strength_Unit_Measure]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="Strength_Unit_Measure" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[OBSDTEC]"
+                      dataType="dbTimeStamp"
+                      name="OBSDTEC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DEA]"
+                      dataType="i4"
+                      name="DEA" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[WACPkg]"
+                      dataType="numeric"
+                      name="WACPkg"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[WAC]"
+                      dataType="numeric"
+                      name="WAC"
+                      precision="13"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[WACEffDate]"
+                      dataType="dbTimeStamp"
+                      name="WACEffDate" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AWPPkg]"
+                      dataType="numeric"
+                      name="AWPPkg"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AWP]"
+                      dataType="numeric"
+                      name="AWP"
+                      precision="13"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[BBDC]"
+                      dataType="dbTimeStamp"
+                      name="BBDC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[MSC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="MSC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[BNC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="BNC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[CSP]"
+                      dataType="numeric"
+                      name="CSP"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DESI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="DESI" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[DEA_Class_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="DEA_Class_Code" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RouteAdmin]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="RouteAdmin" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RX_OTC_Indicator_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="RX_OTC_Indicator_Code" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[Unit_Dose_Unit_of_Use_Package]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Unit_Dose_Unit_of_Use_Package" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[AHFSCC_Therapeutic_Class_Code]"
+                      dataType="numeric"
+                      name="AHFSCC_Therapeutic_Class_Code"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[GPPC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="GPPC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RowID]"
+                      dataType="i4"
+                      name="RowID" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[NDC_10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="NDC_10" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[IDCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="IDCODE" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[RowCreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="RowCreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input].ExternalColumns[PackageQuantity]"
+                      dataType="numeric"
+                      name="PackageQuantity"
+                      precision="37" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Move DrugMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Move DrugMaster from DW1 to DB1\DW1"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DW1"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DrugMaster]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move DrugMaster from DW1 to DB1\DW1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AAPDW1.Medispan]"
+                  connectionManagerRefId="Package.ConnectionManagers[AAPDW1.Medispan]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[NDC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[NDC]"
+                      length="11"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[NDC]"
+                      name="NDC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[GPI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[GPI]"
+                      length="14"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[GPI]"
+                      name="GPI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DrugName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DrugName]"
+                      length="25"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DrugName]"
+                      name="DrugName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[MFG]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[MFG]"
+                      length="30"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[MFG]"
+                      name="MFG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DrugType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DrugType]"
+                      length="50"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DrugType]"
+                      name="DrugType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DrugTypeShort]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DrugTypeShort]"
+                      length="3"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DrugTypeShort]"
+                      name="DrugTypeShort"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Unit]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Unit]"
+                      length="2"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Unit]"
+                      name="Unit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Form]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Form]"
+                      length="4"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Form]"
+                      name="Form"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PS]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PS]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PS]"
+                      name="PS"
+                      precision="8"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PD]"
+                      length="10"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PD]"
+                      name="PD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RxOTC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RxOTC]"
+                      length="3"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RxOTC]"
+                      name="RxOTC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Repack]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Repack]"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Repack]"
+                      name="Repack"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[GPIDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[GPIDesc]"
+                      length="60"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[GPIDesc]"
+                      name="GPIDesc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Strength]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Strength]"
+                      length="25"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Strength]"
+                      name="Strength"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Strength_Unit_Measure]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Strength_Unit_Measure]"
+                      length="11"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Strength_Unit_Measure]"
+                      name="Strength_Unit_Measure"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[OBSDTEC]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[OBSDTEC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[OBSDTEC]"
+                      name="OBSDTEC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DEA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DEA]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DEA]"
+                      name="DEA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[WACPkg]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[WACPkg]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[WACPkg]"
+                      name="WACPkg"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[WAC]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[WAC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[WAC]"
+                      name="WAC"
+                      precision="13"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[WACEffDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[WACEffDate]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[WACEffDate]"
+                      name="WACEffDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AWPPkg]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AWPPkg]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AWPPkg]"
+                      name="AWPPkg"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AWP]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AWP]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AWP]"
+                      name="AWP"
+                      precision="13"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[BBDC]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[BBDC]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[BBDC]"
+                      name="BBDC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[MSC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[MSC]"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[MSC]"
+                      name="MSC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[BNC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[BNC]"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[BNC]"
+                      name="BNC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[CSP]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[CSP]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[CSP]"
+                      name="CSP"
+                      precision="37"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DESI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DESI]"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DESI]"
+                      name="DESI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DEA_Class_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DEA_Class_Code]"
+                      length="5"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[DEA_Class_Code]"
+                      name="DEA_Class_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RouteAdmin]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RouteAdmin]"
+                      length="2"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RouteAdmin]"
+                      name="RouteAdmin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RX_OTC_Indicator_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RX_OTC_Indicator_Code]"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[RX_OTC_Indicator_Code]"
+                      name="RX_OTC_Indicator_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Unit_Dose_Unit_of_Use_Package]"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      name="Unit_Dose_Unit_of_Use_Package"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AHFSCC_Therapeutic_Class_Code]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      name="AHFSCC_Therapeutic_Class_Code"
+                      precision="37"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[GPPC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[GPPC]"
+                      length="25"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[GPPC]"
+                      name="GPPC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[NDC_10]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[NDC_10]"
+                      length="11"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[NDC_10]"
+                      name="NDC_10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[IDCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[IDCode]"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[IDCode]"
+                      name="IDCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PackageQuantity]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PackageQuantity]"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].Columns[PackageQuantity]"
+                      name="PackageQuantity"
+                      precision="37"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[NDC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="NDC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[GPI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="GPI" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DrugName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="DrugName" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[MFG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="MFG" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DrugType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DrugType" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DrugTypeShort]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="DrugTypeShort" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Unit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Unit" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Form]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Form" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PS]"
+                      dataType="numeric"
+                      name="PS"
+                      precision="8"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PD" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RxOTC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="RxOTC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Repack]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Repack" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[GPIDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="GPIDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Strength]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Strength" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Strength_Unit_Measure]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="Strength_Unit_Measure" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[OBSDTEC]"
+                      dataType="dbTimeStamp"
+                      name="OBSDTEC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DEA]"
+                      dataType="i4"
+                      name="DEA" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[WACPkg]"
+                      dataType="numeric"
+                      name="WACPkg"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[WAC]"
+                      dataType="numeric"
+                      name="WAC"
+                      precision="13"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[WACEffDate]"
+                      dataType="dbTimeStamp"
+                      name="WACEffDate" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AWPPkg]"
+                      dataType="numeric"
+                      name="AWPPkg"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AWP]"
+                      dataType="numeric"
+                      name="AWP"
+                      precision="13"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[BBDC]"
+                      dataType="dbTimeStamp"
+                      name="BBDC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[MSC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="MSC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[BNC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="BNC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[CSP]"
+                      dataType="numeric"
+                      name="CSP"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DESI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="DESI" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[DEA_Class_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="DEA_Class_Code" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RouteAdmin]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="RouteAdmin" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[RX_OTC_Indicator_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="RX_OTC_Indicator_Code" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[Unit_Dose_Unit_of_Use_Package]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Unit_Dose_Unit_of_Use_Package" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[AHFSCC_Therapeutic_Class_Code]"
+                      dataType="numeric"
+                      name="AHFSCC_Therapeutic_Class_Code"
+                      precision="37" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[GPPC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="GPPC" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[NDC_10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="NDC_10" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[IDCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="IDCode" />
+                    <externalMetadataColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output].ExternalColumns[PackageQuantity]"
+                      dataType="numeric"
+                      name="PackageQuantity"
+                      precision="37" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[NDC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[NDC]"
+                      name="NDC" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[GPI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[GPI]"
+                      name="GPI" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DrugName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DrugName]"
+                      name="DrugName" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[MFG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[MFG]"
+                      name="MFG" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DrugType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DrugType]"
+                      name="DrugType" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DrugTypeShort]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DrugTypeShort]"
+                      name="DrugTypeShort" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Unit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Unit]"
+                      name="Unit" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Form]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Form]"
+                      name="Form" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PS]"
+                      dataType="numeric"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PS]"
+                      name="PS"
+                      precision="8"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PD]"
+                      name="PD" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RxOTC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RxOTC]"
+                      name="RxOTC" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Repack]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Repack]"
+                      name="Repack" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[GPIDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[GPIDesc]"
+                      name="GPIDesc" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Strength]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Strength]"
+                      name="Strength" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Strength_Unit_Measure]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Strength_Unit_Measure]"
+                      name="Strength_Unit_Measure" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[OBSDTEC]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[OBSDTEC]"
+                      name="OBSDTEC" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DEA]"
+                      dataType="i4"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DEA]"
+                      name="DEA" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[WACPkg]"
+                      dataType="numeric"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[WACPkg]"
+                      name="WACPkg"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[WAC]"
+                      dataType="numeric"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[WAC]"
+                      name="WAC"
+                      precision="13"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[WACEffDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[WACEffDate]"
+                      name="WACEffDate" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AWPPkg]"
+                      dataType="numeric"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AWPPkg]"
+                      name="AWPPkg"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AWP]"
+                      dataType="numeric"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AWP]"
+                      name="AWP"
+                      precision="13"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[BBDC]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[BBDC]"
+                      name="BBDC" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[MSC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[MSC]"
+                      name="MSC" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[BNC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[BNC]"
+                      name="BNC" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[CSP]"
+                      dataType="numeric"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[CSP]"
+                      name="CSP"
+                      precision="37" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DESI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DESI]"
+                      name="DESI" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DEA_Class_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[DEA_Class_Code]"
+                      name="DEA_Class_Code" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RouteAdmin]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RouteAdmin]"
+                      name="RouteAdmin" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RX_OTC_Indicator_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[RX_OTC_Indicator_Code]"
+                      name="RX_OTC_Indicator_Code" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[Unit_Dose_Unit_of_Use_Package]"
+                      name="Unit_Dose_Unit_of_Use_Package" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      dataType="numeric"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[AHFSCC_Therapeutic_Class_Code]"
+                      name="AHFSCC_Therapeutic_Class_Code"
+                      precision="37" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[GPPC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[GPPC]"
+                      name="GPPC" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[NDC_10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[NDC_10]"
+                      name="NDC_10" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[IDCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[IDCode]"
+                      name="IDCode" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PackageQuantity]"
+                      dataType="numeric"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[PackageQuantity]"
+                      name="PackageQuantity"
+                      precision="37" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Move DrugMaster from DW1 to DB1.Paths[OLE DB Source Output]"
+              endId="Package\Move DrugMaster from DW1 to DB1\DB1.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Move DrugMaster from DW1 to DB1\DW1.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="249,42"
+          Id="Package\Move DrugMaster from DW1 to DB1"
+          TopLeft="414,122" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Move DrugMaster from DW1 to DB1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Move DrugMaster from DW1 to DB1\DB1"
+          TopLeft="402,199" />
+        <NodeLayout
+          Size="102,42"
+          Id="Package\Move DrugMaster from DW1 to DB1\DW1"
+          TopLeft="314,100" />
+        <EdgeLayout
+          Id="Package\Move DrugMaster from DW1 to DB1.Paths[OLE DB Source Output]"
+          TopLeft="365,142">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86,57"
+              Start="0,0"
+              End="86,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="82,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="82,28.5"
+                    Point2="86,28.5"
+                    Point3="86,32.5" />
+                  <mssgle:LineSegment
+                    End="86,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move DrugMaster from DW1 to DB1\DB1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move DrugMaster from DW1 to DB1\DW1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
